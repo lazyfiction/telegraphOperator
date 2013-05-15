@@ -8,8 +8,9 @@
         <script>
 
             $(function(){
+                var pulseError = 90;
                 var mainPulse = 0.250;
-                var mainVariance = mainPulse/100;
+                var mainVariance = mainPulse/pulseError;
                 // Get the dot and dash durations (in milliseconds).
                 var dotDuration = morseDecode.getDotDuration();
                 var dashDuration = morseDecode.getDashDuration();
@@ -28,7 +29,7 @@
                     //pulsetime = secondsinminute / (wordsperminute * wordlengthconstant * averagemorselength )
                     mainPulse = 60 / ($('#wpm').val() * 7 * 5);
                     $('.ms').html(mainPulse);
-                    mainVariance = mainPulse/100;
+                    mainVariance = mainPulse/pulseError;
                 });
             
                 $('#easymode').keydown(function(event) {
@@ -148,7 +149,7 @@
                     }, (pauseDuration * 3));
                 });
                 $('#hearMorse').click(function() {
-                    morseGen.play({phrase:$('#phrase').val()});
+                    morseGen.play({phrase:$('#phrase').val(), pulseTime:mainPulse,variance:mainVariance});
                 });
             });
         </script>
