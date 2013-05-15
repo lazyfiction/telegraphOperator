@@ -5,6 +5,9 @@ Telegraph Operator.
 
 ## Credits
 
+Based on the fine work done by Andrew Hedges: http://andrew.hedges.name/experiments/levenshtein/ 
+and Ben Nadel: http://www.bennadel.com/blog/2267-Decoding-Morse-Code-With-JavaScript.htm
+
 ## Intro
 
 A simple broser game in which the player assumes the role of a telegraph operator 
