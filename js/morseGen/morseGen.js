@@ -1,3 +1,7 @@
+/*
+@Author: Petrus J Pretorius.
+*/
+
 if (typeof(define) === 'undefined') var define = function(name, fn) {
     this[name] = fn()
 };
@@ -90,9 +94,83 @@ define('morseGen', function() {
     var phrasePos = 0,
         morsePos = 0,
         lastPulsetime = 0,
+        pausePulse = false,
         done = true,
         pulsePlaying = false,
         frameTime = 30; //ms
+
+
+    var scheduleAudio = function() {
+        var currentTime = audioCtx.currentTime;
+        
+            triggerPulse(currentTime);
+        scheduleMorse(currentTime);
+        if (!done) setTimeout(scheduleAudio, frameTime);
+    };
+
+    var triggerPulse = function(currentTime) {
+        if(pausePulse) return;
+        var options = _export.options;
+        var currPulseCode = patternMap[options.phrase[phrasePos]];
+
+        if (typeof(currPulseCode) === 'undefined') return;
+
+
+        var currPulse = currPulseCode[morsePos];
+
+        if (!pulsePlaying) {
+            var pulseLength = currPulse == '.' ? 0.2 : 0.8;
+        
+            var beepSource = audioCtx.createOscillator();
+            beepSource.frequency = 800;
+            beepSource.connect(compressor);
+            beepSource.start(currentTime);
+            beepSource.stop(currentTime + (options.pulseTime * pulseLength));
+
+            console.log("bleep " + currentTime + ":" + lastPulsetime + ":" + currPulse);
+            pulsePlaying = true;
+        }
+    }
+
+    var scheduleMorse = function(currentTime) {
+        
+        var options = _export.options;
+        if (pausePulse) {
+            if (currentTime > (options.pulseTime + lastPulsetime)) {
+                lastPulsetime = currentTime;
+                pausePulse = false;
+            }
+        }
+        else {
+            var currPulseCode = patternMap[options.phrase[phrasePos]];
+            if (currPulseCode) {
+
+                if (currentTime > (options.pulseTime + lastPulsetime)) {
+                    pulsePlaying = false;
+                    morsePos++;
+                    lastPulsetime = currentTime;
+                };
+
+                if (morsePos >= currPulseCode.length) {
+                    morsePos = 0;
+                    phrasePos++;
+                    pausePulse = true;
+                    pulsePlaying = false;                    
+                }
+            }
+            else { //the spaces
+                if (currentTime > (options.pulseTime * 2 + lastPulsetime)) {
+                    phrasePos++;
+                    lastPulsetime = currentTime;
+                }
+            }
+
+            if (phrasePos >= options.phrase.length) {
+                done = true;
+                return;
+            }           
+        }       
+    };
 
 
     var _export = {
@@ -110,67 +188,9 @@ define('morseGen', function() {
             morsePos = 0;
             lastPulsetime = audioCtx.currentTime;
             done = false;
-            _export.scheduleAudio();
+            scheduleAudio();
         },
-        scheduleAudio: function() {
-            var currentTime = audioCtx.currentTime;
-            _export.scheduleMorse(currentTime);
-            if (!done) setTimeout(_export.scheduleAudio, frameTime);
-        },
-        scheduleMorse: function(currentTime) {
-            var options = _export.options;
 
-            var currPulseCode = patternMap[options.phrase[phrasePos]];
-
-            if (currPulseCode) {
-
-                if (currentTime > (options.pulseTime + lastPulsetime)) {
-                    morsePos++;
-
-                    lastPulsetime = currentTime;
-                };
-
-                if (morsePos >= currPulseCode.length) {
-                    morsePos = 0;
-                    phrasePos++;
-                }
-
-            }
-            else { //the spaces
-                if (currentTime > (options.pulseTime * 4 + lastPulsetime)) {
-                    phrasePos++;
-                    lastPulsetime = currentTime;
-                }
-            }
-
-            if (phrasePos >= options.phrase.length) {
-                done = true;
-                return;
-            }
-
-            currPulseCode = patternMap[options.phrase[phrasePos]];
-
-            if (typeof(currPulseCode) === 'undefined') return;
-
-            var currPulse = currPulseCode[morsePos];
-
-            var pulsePos = (currentTime - lastPulsetime) / options.pulseTime;
-            var pulseLength = currPulse == '.' ? 0.2 : 0.8;
-            if ((pulsePos < pulseLength) && (!pulsePlaying)) {
-                var beepSource = audioCtx.createOscillator();
-                beepSource.frequency = 800;
-                beepSource.connect(compressor);
-                beepSource.start(currentTime);
-                beepSource.stop(currentTime + (options.pulseTime * pulseLength));
-
-                console.log("bleep " + currentTime +":"+lastPulsetime+":"+currPulse);
-                pulsePlaying = true;
-            }
-            else if ((pulsePos > pulseLength) && (pulsePlaying)) {
-                pulsePlaying = false;
-            }
-
-        },
     };
 
 
