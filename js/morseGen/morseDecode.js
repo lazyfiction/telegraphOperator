@@ -3,7 +3,7 @@ if (typeof(define) === 'undefined') var define = function(name, fn) {
 };
 
 define('morseDecode', function() {
-    var patternMap = {
+    var _patternMap = {
         "-----": "0",
         ".----": "1",
         "..---": "2",
@@ -60,7 +60,10 @@ define('morseDecode', function() {
         ".--.-.": "@"
     };
 
-
+    var _dotDuration = 250;
+    var _dashDuration = (_dotDuration * 3);
+    var _pauseDuration = (_dotDuration * 1); 
+    var _sequence = "";
 
     var _export = {
         options: {
@@ -75,7 +78,7 @@ define('morseDecode', function() {
             };
             // Add the given value to the end of the current
             // sequence value.
-            this._sequence += value;
+            _sequence += value;
             // Return this object reference.
             return (this);
         },
@@ -110,19 +113,19 @@ define('morseDecode', function() {
         },
         resetSequence: function() {
             // Clear the sequence.
-            this._sequence = "";
+            _sequence = "";
         },
         resolvePartial: function() {
             // Create an array to hold our possible characters.
             var potentialCharacters = [];
             // Loop over the pattern match to find partial matches.
-            for (var pattern in this._patternMap) {
+            for (var pattern in _patternMap) {
                 // Check to see if the current sequence can be
                 // the start of the given pattern.
-                if (pattern.indexOf(this._sequence) === 0) {
+                if (pattern.indexOf(_sequence) === 0) {
                     // Add this character to the list.
                     potentialCharacters.push(
-                    this._patternMap[pattern]);
+                    _patternMap[pattern]);
                 }
             }
             // Return the potential character matches.
@@ -130,18 +133,27 @@ define('morseDecode', function() {
         },
         resolveSequence: function() {
             // Check to see if the current sequence is valid.
-            if (!this._patternMap.hasOwnProperty(this._sequence)) {
+            if (!_patternMap.hasOwnProperty(_sequence)) {
                 // The sequence cannot be matched.
                 throw (new Error("InvalidSequence"));
             }
             // Get the alpha-numeric mapping.
-            var character = this._patternMap[this._sequence];
+            var character = _patternMap[_sequence];
             // Reset the sequence.
-            this._sequence = "";
+            _sequence = "";
             // Return the mapped character.
             return (character);
         },
-    };
+        getDashDuration: function() {
+            return (_dashDuration);
+        },
+        getDotDuration: function() {
+            return (_dotDuration);
+        },
+        getPauseDuration : function() {
+            return (_pauseDuration);
+        },
+    }
     
     return _export;
 

@@ -179,6 +179,7 @@ define('morseGen', function() {
             pulseTime: 0.5,
             variance: 0.02,
         },
+        beepSourceRT:null,
         play: function(options) {
 
             $.extend(_export.options, _export.options, options);
@@ -190,7 +191,15 @@ define('morseGen', function() {
             done = false;
             scheduleAudio();
         },
-
+        bleepOn: function(){
+            var beepSource = _export.beepSourceRT = audioCtx.createOscillator();
+            beepSource.frequency = 800;
+            beepSource.connect(compressor);
+            beepSource.start(0);            
+        },
+        bleepOff: function(){
+             _export.beepSourceRT.stop(0);
+        }
     };
 
 
