@@ -7,7 +7,8 @@
         <script src="morseDecode.js"></script>
         <script>
             $(function(){
-                
+                var mainPulse = 0.250;
+                var mainVariance = mainPulse/100;
                 // Get the dot and dash durations (in milliseconds).
                 var dotDuration = morseDecode.getDotDuration();
                 var dashDuration = morseDecode.getDashDuration();
@@ -21,6 +22,13 @@
                 
                 //morseGen.play({phrase:"Wild West Telegraph Operator Job", pulseTime: 0.125,variance: 0.005});
             
+                $('#wpm').change(function(event){
+                    //pulsetime = secondsinminute / (wordsperminute * wordlengthconstant * averagemorselength )
+                    mainPulse = 60 / ($('#wpm').val() * 7 * 5);
+                    $('.ms').html(mainPulse);
+                    mainVariance = mainPulse/100;
+                });
+            
                 $('#easymode').keydown(function(event) {
                     if (event.which != 13&&event.which != 190 &&event.which != 189) {
                         event.preventDefault();
@@ -29,7 +37,7 @@
                             try{
                                 var out = morseDecode.resolveSequence();
                                 $('#output').append(out);
-                                morseGen.play({phrase:out});
+                                morseGen.play({phrase:out, pulseTime:mainPulse,variance:mainVariance});
                             }catch(err){
                                 alert("Invalid Morse Sukka Fool!");
                                 morseDecode.resetSequence();
@@ -103,7 +111,7 @@
                             // the current sequence.
                             var character = morseDecode.resolveSequence();
                             $('#output').append(character);
-                            morseGen.play({phrase:character});
+                            morseGen.play({phrase:character, pulseTime:mainPulse});
                         }
                         catch (e) {
                             // Reset the sequence - something
