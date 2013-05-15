@@ -22,8 +22,8 @@ in Columbus, Ohio (The wild west of the telegraphy lines :P), in 1861.
 This game is a work of historical fiction
 certain inaccuracies have been chosen for gameplay reasons
 * ITU morse code is used and not the American morse of the time
-* Operator gossip is completely fabricated
-* The splash screen is actually an image of Winnipeg, canada.
+* Operator gossip and telegram messages are completely fabricated
+* The splash screen is actually an image of Winnipeg, Canada.
 
  the player has three functions as a telegraph operator
  
