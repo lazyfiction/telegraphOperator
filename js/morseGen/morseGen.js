@@ -159,7 +159,7 @@ define('morseGen', function() {
                 }
             }
             else { //the spaces
-                if (currentTime > (options.pulseTime * 2 + lastPulsetime)) {git s
+                if (currentTime > (options.pulseTime * 2 + lastPulsetime)) {
                     phrasePos++;
                     lastPulsetime = currentTime;
                 }
