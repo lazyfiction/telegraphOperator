@@ -108,7 +108,6 @@
                         // Push a dash.
                         morseDecode.dash();
                     }
-                    morseGen.bleepOff();
                     // Display the possible characters for the current
                     // sequence.
                     $('.preview').html(morseDecode.resolvePartial().join(" , "));
@@ -127,7 +126,7 @@
                             var character = morseDecode.resolveSequence();
                             $('#output').append(character);
 
-                           //morseGen.play({phrase:character, pulseTime:mainPulse});
+                            //morseGen.play({phrase:character, pulseTime:mainPulse});
 
                         }
                         catch (e) {
@@ -148,7 +147,7 @@
                     }, (pauseDuration * 3));
                 });
                 $('#hearMorse').click(function() {
-                    morseGen.play({phrase:$('#phrase').val()});
+                    morseGen.play({phrase:$('#phrase').val(),pulseTime:Number($('.ms').html())});
                 });
             });
         </script>
