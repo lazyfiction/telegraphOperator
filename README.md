@@ -1,17 +1,29 @@
 
 Wild West Telegraph Operator Job
 
-Telegraph Operator. 
+## Dedication
+
+This game is dedicated to Andrew Lewis 
+in celebration of his newest oldness (2013).
 
 ## Credits
 
 Based on the fine work done by Andrew Hedges: http://andrew.hedges.name/experiments/levenshtein/ 
 and Ben Nadel: http://www.bennadel.com/blog/2267-Decoding-Morse-Code-With-JavaScript.htm
+The Reuters transmissions of the day inferred from the archives of the ohio 
+memory project : http://www.ohiohistoryhost.org/ohiomemory/odnp/newspapers
+
 
 ## Intro
 
 A simple broser game in which the player assumes the role of a telegraph operator 
 in Columbus, Ohio (The wild west of the telegraphy lines :P), in 1861. 
+
+This game is a work of historical fiction
+certain inaccuracies have been chosen for gameplay reasons
+* ITU morse code is used and not the American morse of the time
+* Operator gossip is completely fabricated
+* The splash screen is actually an image of Winnipeg, canada.
 
  the player has three functions as a telegraph operator
  
