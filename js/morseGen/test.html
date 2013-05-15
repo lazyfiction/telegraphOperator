@@ -112,6 +112,21 @@
                             var character = morseDecode.resolveSequence();
                             $('#output').append(character);
                             morseGen.play({phrase:character, pulseTime:mainPulse});
+                    // wait a bit to see if we need to resolve the
+                    // current sequence (if the user doesn't interact
+                    // with the interpreter, we'll resolve).
+                    resolveTimer = setTimeout(
+
+                    function() {
+                        // Try to resolve the sequence.
+                        try {
+                            // Get the character respresented by
+                            // the current sequence.
+                            var character = morseDecode.resolveSequence();
+                            $('#output').append(character);
+
+                            morseGen.play({phrase:character, pulseTime:mainPulse});
+
                         }
                         catch (e) {
                             // Reset the sequence - something
