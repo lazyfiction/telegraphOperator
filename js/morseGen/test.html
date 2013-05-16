@@ -5,11 +5,26 @@
         <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
         <script src="morseGen.js"></script>
         <script src="morseDecode.js"></script>
+        <script src="switchBoardCodes.js"></script>
+        <style>
+            .morseTable {
+                border: black solid 1px;
+            }
+            .morseTable td {
+                padding: 3px;
+            }
+            .morseKey {
+                border: #333 solid 1px;
+            }
+            .morseVal {
+                border: #777 solid 2px;
+            }
+        </style>
         <script>
-
-            $(function(){
+            $(function() {
+                morseGen.makeMorseTable();
                 var mainPulse = 0.250;
-                var mainVariance = mainPulse/100;
+                var mainVariance = mainPulse / 100;
                 // Get the dot and dash durations (in milliseconds).
                 var dotDuration = morseDecode.getDotDuration();
                 var dashDuration = morseDecode.getDashDuration();
@@ -23,14 +38,14 @@
 
                 //morseGen.play({phrase:"Wild West Telegraph Operator Job", pulseTime: 0.125,variance: 0.005});
 
-            
-                $('#wpm').change(function(event){
+
+                $('#wpm').change(function(event) {
                     //pulsetime = secondsinminute / (wordsperminute * wordlengthconstant * averagemorselength )
                     mainPulse = 60 / ($('#wpm').val() * 7 * 5);
                     $('.ms').html(mainPulse);
-                    mainVariance = mainPulse/100;
+                    mainVariance = mainPulse / 100;
                 });
-            
+
                 $('#easymode').keydown(function(event) {
                     if (event.which != 13 && event.which != 190 && event.which != 189) {
                         event.preventDefault();
@@ -41,8 +56,13 @@
                                 var out = morseDecode.resolveSequence();
                                 $('#output').append(out);
 
-                                morseGen.play({phrase:out, pulseTime:mainPulse,variance:mainVariance});
-                            }catch(err){
+                                morseGen.play({
+                                    phrase: out,
+                                    pulseTime: mainPulse,
+                                    variance: mainVariance
+                                });
+                            }
+                            catch (err) {
                                 alert("Invalid Morse Sukka Fool!");
                                 morseDecode.resetSequence();
                             }
@@ -147,7 +167,10 @@
                     }, (pauseDuration * 3));
                 });
                 $('#hearMorse').click(function() {
-                    morseGen.play({phrase:$('#phrase').val(),pulseTime:Number($('.ms').html())});
+                    morseGen.play({
+                        phrase: $('#phrase').val(),
+                        pulseTime: Number($('.ms').html())
+                    });
                 });
             });
         </script>

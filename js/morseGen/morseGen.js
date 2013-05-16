@@ -75,6 +75,28 @@ define('morseGen', function() {
     };
 
 
+    var makeMorseTable = function() {
+        var table = $('<table class="morseTable"/>');
+        var row, cnt = 0,
+            columns = 10;
+        $.each(patternMap, function(k, v) {
+
+            if (cnt == 0) {
+                if (row) table.append(row);
+                row = $('<tr/>');
+            }
+            row.append($('<td class="morseKey">' + k + '</td><td class="morseVal">' + v + '</td>'))
+            cnt++;
+            cnt = cnt%columns;
+
+
+        })
+        if (row) table.append(row);
+        $('body').append(table);
+    }
+
+
+
     var mainVol, compressor, audioCtx = new AudioContext();
 
 
@@ -102,14 +124,14 @@ define('morseGen', function() {
 
     var scheduleAudio = function() {
         var currentTime = audioCtx.currentTime;
-        
-            triggerPulse(currentTime);
+
+        triggerPulse(currentTime);
         scheduleMorse(currentTime);
         if (!done) setTimeout(scheduleAudio, frameTime);
     };
 
     var triggerPulse = function(currentTime) {
-        if(pausePulse) return;
+        if (pausePulse) return;
         var options = _export.options;
         var currPulseCode = patternMap[options.phrase[phrasePos]];
 
@@ -120,7 +142,7 @@ define('morseGen', function() {
 
         if (!pulsePlaying) {
             var pulseLength = currPulse == '.' ? 0.2 : 0.8;
-        
+
             var beepSource = audioCtx.createOscillator();
             beepSource.frequency = 800;
             beepSource.connect(compressor);
@@ -133,7 +155,7 @@ define('morseGen', function() {
     }
 
     var scheduleMorse = function(currentTime) {
-        
+
         var options = _export.options;
         if (pausePulse) {
             if (currentTime > (options.pulseTime + lastPulsetime)) {
@@ -155,7 +177,7 @@ define('morseGen', function() {
                     morsePos = 0;
                     phrasePos++;
                     pausePulse = true;
-                    pulsePlaying = false;                    
+                    pulsePlaying = false;
                 }
             }
             else { //the spaces
@@ -168,8 +190,8 @@ define('morseGen', function() {
             if (phrasePos >= options.phrase.length) {
                 done = true;
                 return;
-            }           
-        }       
+            }
+        }
     };
 
 
@@ -179,7 +201,7 @@ define('morseGen', function() {
             pulseTime: 0.5,
             variance: 0.02,
         },
-        beepSourceRT:null,
+        beepSourceRT: null,
         play: function(options) {
 
             $.extend(_export.options, _export.options, options);
@@ -191,15 +213,16 @@ define('morseGen', function() {
             done = false;
             scheduleAudio();
         },
-        bleepOn: function(){
+        bleepOn: function() {
             var beepSource = _export.beepSourceRT = audioCtx.createOscillator();
             beepSource.frequency = 800;
             beepSource.connect(compressor);
-            beepSource.start(0);            
+            beepSource.start(0);
         },
-        bleepOff: function(){
-             _export.beepSourceRT.stop(0);
-        }
+        bleepOff: function() {
+            _export.beepSourceRT.stop(0);
+        },
+        makeMorseTable: makeMorseTable
     };
 
 
