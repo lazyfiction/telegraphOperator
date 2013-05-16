@@ -21,10 +21,11 @@
             }
         </style>
         <script>
-            $(function() {
-                morseGen.makeMorseTable();
+
+            $(function(){
+                var pulseError = 90;
                 var mainPulse = 0.250;
-                var mainVariance = mainPulse / 100;
+                var mainVariance = mainPulse/pulseError;
                 // Get the dot and dash durations (in milliseconds).
                 var dotDuration = morseDecode.getDotDuration();
                 var dashDuration = morseDecode.getDashDuration();
@@ -43,7 +44,8 @@
                     //pulsetime = secondsinminute / (wordsperminute * wordlengthconstant * averagemorselength )
                     mainPulse = 60 / ($('#wpm').val() * 7 * 5);
                     $('.ms').html(mainPulse);
-                    mainVariance = mainPulse / 100;
+
+                    mainVariance = mainPulse/pulseError;
                 });
 
                 $('#easymode').keydown(function(event) {
@@ -162,15 +164,15 @@
 
                         function() {
                             // Add a "space".
-                            $('.preview').append(" ");
+                            $('#output').append(" ");
                         }, (pauseDuration * 5));
                     }, (pauseDuration * 3));
                 });
                 $('#hearMorse').click(function() {
-                    morseGen.play({
-                        phrase: $('#phrase').val(),
-                        pulseTime: Number($('.ms').html())
-                    });
+
+
+                    morseGen.play({phrase:$('#phrase').val(),pulseTime:Number($('.ms').html())});
+
                 });
             });
         </script>
