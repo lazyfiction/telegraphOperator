@@ -2,11 +2,7 @@
 @Author: Petrus J Pretorius.
 */
 
-if (typeof(define) === 'undefined') var define = function(name, fn) {
-    this[name] = fn()
-};
-
-define('morseGen', function() {
+define( function() {
 
     var audioSupported;
     var AudioContext = window.AudioContext || window.webkitAudioContext;

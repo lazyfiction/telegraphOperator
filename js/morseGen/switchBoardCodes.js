@@ -1,4 +1,4 @@
-SBC = {
+define({
     "1": "Wait a minute.",
     "2": "Very Important.",
     "3": "What time is it?",
@@ -41,4 +41,4 @@ SBC = {
     "91": "Superintendent's signal.",
     "92": "Deliver Promptly.",
     "134": "Who is at the key?"
-};
+});

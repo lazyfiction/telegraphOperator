@@ -2,7 +2,7 @@
 <html>
     
     <head>
-        <script src-main="js/main.js" src="js/require.js"></script>
+        <script data-main="js/main.js" src="js/require.js"></script>
         <style>
             .morseTable {
                 border: black solid 1px;
@@ -16,15 +16,16 @@
             .morseVal {
                 border: #777 solid 2px;
             }
+            #mainContent {
+                background-image:url('img/telegraphBGsm.png');
+                width: 640px;
+                height: 480px;
+            }
         </style>
-        <script>
-            $(function() {
-                telegraphOperator.init();
-            });
-        </script>
     </head>
     
     <body>
+    <div id="tests">
         <label for="phrase">Phrase</label>
         <input id="phrase" value="Hello World" />
         <button id="hearMorse">Hear Morse</button>
@@ -41,6 +42,10 @@
         <textarea id="output"></textarea>
         <br/>
         <button id="lewiskey">Lewis Key</button>
+        </div>
+        <div id="mainContent">
+            
+        </div>
     </body>
 
 </html>

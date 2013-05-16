@@ -1,8 +1,4 @@
-if (typeof(define) === 'undefined') var define = function(name, fn) {
-    this[name] = fn()
-};
-
-define('morseDecode', function() {
+define( function() {
     var _patternMap = {
         "-----": "0",
         ".----": "1",
