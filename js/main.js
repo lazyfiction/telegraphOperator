@@ -166,6 +166,21 @@ require(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switch
             });
 
         });
+        
+        $('#lewiskeyImg').mousedown(function(event) {
+            $('#lewiskeyImg').css('transform','rotate(3deg)');
+            $('#lewiskeyImg').css('-webkit-transform','rotate(3deg)');
+            $('#lewiskeyImg').css('-ms-transform','rotate(3deg)');
+            $('#lewiskeyImg').css('-moz-transform','rotate(3deg)');
+        });
+        $('#lewiskeyImg').mouseup(function(event) {
+            
+            $('#lewiskeyImg').css('transform','rotate(0deg)');
+            $('#lewiskeyImg').css('-webkit-transform','rotate(0deg)');
+            $('#lewiskeyImg').css('-ms-transform','rotate(0deg)');
+            $('#lewiskeyImg').css('-moz-transform','rotate(0deg)');
+        });
+        
     });
 
 
