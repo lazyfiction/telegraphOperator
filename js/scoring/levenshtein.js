@@ -12,12 +12,7 @@ If you want to hire me to write JavaScript for you, see my resume.
 http://andrew.hedges.name/resume/
 
 */
-
-if (typeof(define) === 'undefined') var define = function(name, fn) {
-    this[name] = fn()
-};
-
-define('levenshtein', function() {
+define(function() {
     
     // return the smallest of the three values passed in
     function minimator(x, y, z) {
