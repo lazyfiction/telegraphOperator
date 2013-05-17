@@ -27,6 +27,9 @@
     height: 106px;
     background: url('../img/clocksml.png') no-repeat;
 }
+#scoreBox {
+    position: absolute;
+}
 #min {
     position: absolute;
     width: 12px;
@@ -54,10 +57,7 @@
     width: 35%;
     height: 32%;
 }
-#morseSheet:hover {
-    -webkit-transform: translate(10px, 123px);
-    transform: scale(1);
-}
+
 #morseSheet {
     -webkit-transition: -webkit-transform 1s;
     transition: transform 1s;

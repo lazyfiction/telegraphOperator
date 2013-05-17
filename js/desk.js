@@ -214,8 +214,29 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
             applyCSSTransForm(this, transform);
         });
 
-        $('#lewiskeyImg').on('dragstart', function(event) {
+        $('#lewiskeyImg, #morseSheet').on('dragstart', function(event) {
             event.preventDefault();
+        });
+
+        var morseSheetOpen = false,
+            transformClosed = 'perspective(582px) rotateX(28deg) translate(125px, 223px) scale(0.27)',
+            transformOpen = 'translate(10px, 123px)';
+
+        $('#morseSheet').click(function(event) {
+            if (morseSheetOpen) {
+                morseSheetOpen = false;
+                applyCSSTransForm(this, transformClosed);
+            }
+            else {
+                morseSheetOpen = true;
+                applyCSSTransForm(this, transformOpen);
+            }
+        });
+
+        $('#morseSheet').mouseleave(function(event) {
+
+            morseSheetOpen = false;
+            applyCSSTransForm(this, transformClosed);
         });
 
     }
