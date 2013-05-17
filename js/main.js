@@ -26,7 +26,42 @@ require(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switch
         var spaceTimer = null;
 
         //morseGen.play({phrase:"Wild West Telegraph Operator Job", pulseTime: 0.125,variance: 0.005});
+        
+            setInterval(function() {
+                var seconds = new Date().getSeconds();
+                var sdegree = seconds * 6;
+                var srotate = "rotate(" + sdegree + "deg)";
 
+                $("#min").css({
+                    "transform": srotate
+                });
+
+            }, 1000);
+
+/*
+            setInterval(function() {
+                var hours = new Date().getHours();
+                var mins = new Date().getMinutes();
+                var hdegree = hours * 30 + (mins / 2);
+                var hrotate = "rotate(" + hdegree + "deg)";
+
+                $("#hour").css({
+                    "transform": hrotate
+                });
+
+            }, 1000);*/
+
+            setInterval(function() {
+                var mins = new Date().getMinutes();
+                var mdegree = mins * 6;
+                var mrotate = "rotate(" + mdegree + "deg)";
+
+                $("#hour").css({
+                    "transform": mrotate
+                });
+
+            }, 1000);
+            
 
         $('#wpm').change(function(event) {
             //pulsetime = secondsinminute / (wordsperminute * wordlengthconstant * averagemorselength )
