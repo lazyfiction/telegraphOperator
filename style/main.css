@@ -45,14 +45,22 @@
     background: url('../img/hoursml.png');
     z-index: 1;
 }
-#morseSheet:hover{
-    
-    -webkit-transform: translate(25px,123px);
-    transform:  scale(1);
-} 
+#output {
+    font-family: cursive;
+    position: absolute;
+    top: 250px;
+    -webkit-transform: perspective(622px) translate(-132px, 45px) rotateZ(5deg) rotateX(29deg) scale(0.927);
+    left: 167px;
+    width: 35%;
+    height: 32%;
+}
+#morseSheet:hover {
+    -webkit-transform: translate(10px, 123px);
+    transform: scale(1);
+}
 #morseSheet {
     -webkit-transition: -webkit-transform 1s;
-    transition: transform 2s;
-    -webkit-transform: perspective( 582px ) rotateX(28deg) translate(125px,223px) scale(0.27);
-    transform: perspective( 582px ) rotateX(28deg) translate(125px,223px) scale(0.27);
+    transition: transform 1s;
+    -webkit-transform: perspective(582px) rotateX(28deg) translate(125px, 223px) scale(0.27);
+    transform: perspective(582px) rotateX(28deg) translate(125px, 223px) scale(0.27);
 }
