@@ -17,21 +17,21 @@
                 border: #777 solid 2px;
             }
             #mainContent {
+                position: relative;
                 background-image:url('img/telegraphBGsm.png');
                 width: 640px;
                 height: 480px;
             }
             #lewiskeyImg {
-                position: relative;
+                position: absolute;
                 top: 244px;
                 left: 544px;
             }
             #clock {
-                position: relative;
+                position: absolute;
                 width: 106px;
                 height: 106px;
                 background: url('img/clocksml.png') no-repeat;
-                list-style: none;
             }
             #min {
                 position: absolute;
@@ -74,10 +74,10 @@
             <button id="lewiskey">Lewis Key</button>
         </div>
         <div id="mainContent">
-            <ul id="clock">
-                <li id="hour"></li>
-                <li id="min"></li>
-            </ul>
+            <div id="clock">
+                <div id="hour"></div>
+                <div id="min"></div>
+            </div>
             <img id="lewiskeyImg" src="img/LewisKeysm.png" />
         </div>
     </body>
