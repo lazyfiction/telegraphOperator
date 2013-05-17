@@ -1,5 +1,10 @@
+# Wild West Telegraph Operator Job
 
-Wild West Telegraph Operator Job
+by @zskilz and @cybadave
+
+``Requires CSS3 and Web Audio API, so for now, works on webkit-based browsers only (Chrome or Safari).``
+
+Copyright &copy; LazyFiction 2013. All rights reserved.
 
 ## Dedication
 

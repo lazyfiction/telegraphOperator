@@ -2,7 +2,7 @@
 @Author: Petrus J Pretorius.
 */
 
-define( function() {
+define(function() {
 
     var audioSupported;
     var AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -83,7 +83,7 @@ define( function() {
             }
             row.append($('<td class="morseKey">' + k + '</td><td class="morseVal">' + v + '</td>'))
             cnt++;
-            cnt = cnt%columns;
+            cnt = cnt % columns;
 
 
         })
@@ -91,23 +91,46 @@ define( function() {
         $('body').append(table);
     }
 
+    // Audio setup
+    var noiseWT, noizeSource = [],
+        noiseGain, crackleSource, mainVol, compressor, audioCtx = new AudioContext();
 
+    var WTsize = 4096;
+    var real = new Float32Array(WTsize);
+    var imag = new Float32Array(WTsize);
+    real[0] = 0;
+    imag[0] = 0;
+    for (var i = 1; i < WTsize; i++) {
+        real[i] = (WTsize - i) / WTsize * Math.random();
+        imag[i] = (WTsize - i) / WTsize * Math.random();
+    }
 
-    var mainVol, compressor, audioCtx = new AudioContext();
-
+    noiseWT = audioCtx.createWaveTable(real, imag);
 
 
 
     mainVol = audioCtx.createGainNode();
+    noiseGain = audioCtx.createGainNode();
     // Connect MainVol to final destination
     mainVol.connect(audioCtx.destination);
-    mainVol.gain.value = 0.5;
+    mainVol.gain.value = 0.3;
+    noiseGain.gain.value = 0.1;
     compressor = audioCtx.createDynamicsCompressor();
 
     compressor.connect(mainVol);
 
+    noiseGain.connect(compressor);
+
+    for (var i = 0; i < 4; i++) {
+        noizeSource[i] = audioCtx.createOscillator();
+        noizeSource[i].setWaveTable(noiseWT);
+        noizeSource[i].frequency.value = 0.2 + ((i + Math.random()) / 4);
+        noizeSource[i].connect(noiseGain);
+        noizeSource[i].start(0);
+    }
 
 
+    //Scheduling
 
     var phrasePos = 0,
         morsePos = 0,
@@ -140,7 +163,7 @@ define( function() {
             var pulseLength = currPulse == '.' ? 0.2 : 0.8;
 
             var beepSource = audioCtx.createOscillator();
-            beepSource.frequency = 800;
+            beepSource.frequency.value = 800;
             beepSource.connect(compressor);
             beepSource.start(currentTime);
             beepSource.stop(currentTime + (options.pulseTime * pulseLength));
@@ -196,6 +219,9 @@ define( function() {
             phrase: 'Foo',
             pulseTime: 0.5,
             variance: 0.02,
+            noiseLevel: 0.4,
+            crackle: 0.3,
+            drop: 0.01
         },
         beepSourceRT: null,
         play: function(options) {
@@ -211,12 +237,12 @@ define( function() {
         },
         bleepOn: function() {
             var beepSource = _export.beepSourceRT = audioCtx.createOscillator();
-            beepSource.frequency = 800;
+            beepSource.frequency.value = 800;
             beepSource.connect(compressor);
             beepSource.start(0);
         },
         bleepOff: function() {
-            _export.beepSourceRT.stop(0);
+            if (_export.beepSourceRT) _export.beepSourceRT.stop(0);
         },
         makeMorseTable: makeMorseTable
     };
