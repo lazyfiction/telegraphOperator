@@ -1,27 +1,47 @@
 .morseTable {
     border: black solid 1px;
 }
-
 .morseTable td {
     padding: 3px;
 }
-
 .morseKey {
     border: #333 solid 1px;
 }
-
 .morseVal {
     border: #777 solid 2px;
 }
-
 #mainContent {
+    position: relative;
     background-image:url('../img/telegraphBGsm.png');
     width: 640px;
     height: 480px;
 }
-
 #lewiskeyImg {
-    position: relative;
+    position: absolute;
     top: 244px;
     left: 544px;
+}
+#clock {
+    position: absolute;
+    width: 106px;
+    height: 106px;
+    background: url('../img/clocksml.png') no-repeat;
+}
+#min {
+    position: absolute;
+    width: 12px;
+    height: 102px;
+    top: 0px;
+    left: 45px;
+    background: url('../img/minutesml.png');
+    z-index: 2;
+}
+#hour {
+    position: absolute;
+    width: 15px;
+    height: 102px;
+    top: 0px;
+    left: 45px;
+    background: url('../img/hoursml.png');
+    z-index: 1;
 }
