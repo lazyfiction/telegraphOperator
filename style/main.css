@@ -46,10 +46,13 @@
     z-index: 1;
 }
 #morseSheet:hover{
+    
     -webkit-transform: translate(25px,123px);
     transform:  scale(1);
 } 
 #morseSheet {
+    -webkit-transition: -webkit-transform 1s;
+    transition: transform 2s;
     -webkit-transform: perspective( 582px ) rotateX(28deg) translate(125px,223px) scale(0.27);
     transform: perspective( 582px ) rotateX(28deg) translate(125px,223px) scale(0.27);
 }

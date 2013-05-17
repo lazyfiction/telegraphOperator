@@ -200,7 +200,7 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
 
         $('#lewiskeyImg').mousedown(function(event) {
             lewisKeyDown();
-            var transform = 'translate(1px,-15px) rotate(1.5deg) translate(-1px,15px)';
+            var transform = 'perspective(300px) translate(1px,-15px) rotateX(-8deg) translate(-1px,15px)';
             applyCSSTransForm(this, transform);
         });
         $('#lewiskeyImg').mouseup(function(event) {
