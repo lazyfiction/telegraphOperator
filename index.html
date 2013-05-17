@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
         <script data-main="js/main.js" src="js/require.js"></script>
+        <link type="text/css" rel="stylesheet" href="style/main.css"
+        />
     </head>
+    
     <body>
         <div id="splashscreen">
-            <img src="img/wwtoj_splash.png" title="Wild West Telegraph Operator Job" alt="Splash Image" /><br/>
-            <label for="wpm">How quick are you partner? (Word Per Minute)</label><input id="wpm" value="5"/>
-            <label for="gamemode">How tough are you?</label><select id="gamemode"><option value="easy">Sappy</option><option value="hard">Curly Wolf</option></select><br/>
+            <img src="img/wwtoj_splash.png" title="Wild West Telegraph Operator Job"
+            alt="Splash Image" />
+            <br/>
+            <label for="wpm">How quick are you partner? (Word Per Minute)</label>
+            <input id="wpm" value="5"
+            />
+            <label for="gamemode">How tough are you?</label>
+            <select id="gamemode">
+                <option value="easy">Sappy</option>
+                <option value="hard">Curly Wolf</option>
+            </select>
+            <br/>
             <button>Play</button>
         </div>
-        <form id="gameplayarea">
-            <fieldset id="exchange">
-                <image src="img/statelinesmap.png" title="Map of Ohio Telegraph Lines" alt="Exchange Map" />
-                <label for="ex0">Westfield</label><input type="checkbox" id="ex0" checked />
-                <label for="ex1">Hebrun</label><input type="checkbox" id="ex1" checked />
-                <label for="ex2">Canal Winchester</label><input type="checkbox" id="ex2" checked />
-                <label for="ex3">Circleville</label><input type="checkbox" id="ex3" checked />
-                <label for="ex4">Washington</label><input type="checkbox" id="ex4" checked />
-                <label for="ex5">London</label><input type="checkbox" id="ex5" checked />
-            </fieldset> 
-            <fieldset id="interface">   
-                <input id="morseinput" class="easymode"/>
-                <button id="lewiskey" class="hardmode">Lewis Key</button>
-            </fieldset>
-            <fieldset id="message">
-                <textarea id="incoming"></textarea>
-                <textarea id="outgoing"></textarea>
-            </fieldset>
+        <form id="exchange">
+            <label for="ex0">Westfield</label>
+            <input type="checkbox" id="ex0" checked />
+            <label for="ex1">Hebrun</label>
+            <input type="checkbox" id="ex1" checked />
+            <label for="ex2">Canal Winchester</label>
+            <input type="checkbox" id="ex2" checked />
+            <label for="ex3">Circleville</label>
+            <input type="checkbox" id="ex3" checked />
+            <label for="ex4">Washington</label>
+            <input type="checkbox" id="ex4" checked />
+            <label for="ex5">London</label>
+            <input type="checkbox" id="ex5" checked />
         </form>
         <div id="mainContent">
             <img id="lewiskeyImg" src="img/LewisKeysm.png" />
+            <div>
+                <label for="easymode">EasyMode</label>
+                <input id="easymode" />
+                <span class="preview"></span>
+                <br/>
+                <label for="output">Output</label>
+                <textarea id="output"></textarea>
+                <br/>
+            </div>
         </div>
     </body>
+
 </html>
