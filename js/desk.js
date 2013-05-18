@@ -1,4 +1,4 @@
-define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes', 'scoring/levenshtein','jquery.easing.min'], function($, morseDecode, morseGen, switchBoardCodes, levenshtein, jqe) {
+define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes', 'scoring/levenshtein','scoring/display','jquery.easing.min'], function($, morseDecode, morseGen, switchBoardCodes, levenshtein, displayscore, jqe) {
 
     var pulseError = 90;
     var mainPulse = 0.250;
@@ -20,7 +20,9 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
         var outpt = $('#output').val();
         var inpt = $('#input').val();
         var score = ((outpt.length - levenshtein.levenshteinenator(outpt,inpt))/inpt.length)*100;
+        score = Math.floor(score);
         $('#score').html(score+'%');
+        displayscore.show(score);
     }
 
     var lewisKeyDown = function() {

@@ -15,11 +15,9 @@
 	overflow:hidden;
 	width:26px;
 	height:46px;
-	border:1px solid black;
 	float:left;
 }
 .slots .wrapper{
-	margin-top:-6px;
 	width:26px;
 }
 .slot0{
@@ -39,6 +37,23 @@
 	height:46px;
 	text-align:center;
     background: url('../img/sbkg2.png');
+}
+#sb0
+{
+    position:relative;
+    top:9px;
+    left:28px;
+}
+#sb1
+{
+    position:relative;
+    top:9px;
+    left:42px;
+}
+#sb2{
+    position:relative;
+    top:9px;
+    left:52px;
 }
 #mainContent {
     position: relative;
@@ -61,6 +76,8 @@
     position: absolute;
     left: 200px;
     top: 0px;
+    width:188px;
+    height:67px;
     background: url('../img/scoreBox.png') no-repeat;
 }
 #exchange {
