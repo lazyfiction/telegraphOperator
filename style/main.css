@@ -10,6 +10,36 @@
 .morseVal {
     border: #777 solid 2px;
 }
+.slots {
+    font-size:46px;
+	overflow:hidden;
+	width:26px;
+	height:46px;
+	border:1px solid black;
+	float:left;
+}
+.slots .wrapper{
+	margin-top:-6px;
+	width:26px;
+}
+.slot0{
+	width:26px;
+	height:46px;
+	text-align:center;
+    background: url('../img/sbkg0.png');
+}
+.slot1{
+    width:26px;
+	height:46px;
+	text-align:center;
+    background: url('../img/sbkg1.png');
+}
+.slot2{
+    width:26px;
+	height:46px;
+	text-align:center;
+    background: url('../img/sbkg2.png');
+}
 #mainContent {
     position: relative;
     background-image:url('../img/telegraphBGsm.png');
@@ -31,6 +61,7 @@
     position: absolute;
     left: 200px;
     top: 0px;
+    background: url('../img/scoreBox.png') no-repeat;
 }
 #exchange {
     position: absolute;

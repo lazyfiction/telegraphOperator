@@ -1,4 +1,4 @@
-define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes', 'scoring/levenshtein',], function($, morseDecode, morseGen, switchBoardCodes, levenshtein) {
+define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes', 'scoring/levenshtein','jquery.easing.min'], function($, morseDecode, morseGen, switchBoardCodes, levenshtein, jqe) {
 
     var pulseError = 90;
     var mainPulse = 0.250;
