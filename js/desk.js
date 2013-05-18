@@ -1,4 +1,4 @@
-define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes'], function($, morseDecode, morseGen, switchBoardCodes) {
+define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes', 'scoring/levenshtein','scoring/display','jquery.easing.min'], function($, morseDecode, morseGen, switchBoardCodes, levenshtein, displayscore, jqe) {
 
     var pulseError = 90;
     var mainPulse = 0.250;
@@ -14,6 +14,16 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
     // Keep a timer for adding a new space to the message.
     var spaceTimer = null;
     var keydown = false;
+    
+    var showScore = function(){
+        //score = (outputstring.length -levenshtein_distance(outputstring,inputstring) )/inpustring.length * 100
+        var outpt = $('#output').val();
+        var inpt = $('#input').val();
+        var score = ((outpt.length - levenshtein.levenshteinenator(outpt,inpt))/inpt.length)*100;
+        score = Math.floor(score);
+        $('#score').html(score+'%');
+        displayscore.show(score);
+    }
 
     var lewisKeyDown = function() {
         if (keydown) return;
@@ -188,6 +198,10 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
             });
 
         });
+        
+        $('#sscore').click(function(){
+            showScore();
+        });
 
         var applyCSSTransForm = function(sel, transform) {
             var e = $(sel);
@@ -255,7 +269,17 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
                 <div id="hour"></div>\
                 <div id="min"></div>\
             </div>\
-            <img id="scoreBox" src="img/scoreBox.png" />\
+            <div id="scoreBox" src="img/scoreBox.png" >\
+                <div class="slots"  id="sb0">\
+                    <div class="wrapper" ></div>\
+                </div>\
+                <div class="slots"  id="sb1">\
+                    <div class="wrapper" ></div>\
+                </div>\
+                <div class="slots"  id="sb2">\
+	                <div class="wrapper" ></div>\
+                </div>\
+            </div>\
             <img id="lewiskeyImg" src="img/LewisKeysm.png" />\
             <img id="morseSheet" src="img/morseSheet.png" />\
         ',

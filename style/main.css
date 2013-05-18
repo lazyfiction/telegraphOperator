@@ -24,6 +24,51 @@
     right: 12px;
     padding: 5px;
 }
+.slots {
+    font-size:31px;
+	overflow:hidden;
+	width:26px;
+	height:46px;
+	float:left;
+}
+.slots .wrapper{
+	width:26px;
+}
+.slot0{
+	width:26px;
+	height:46px;
+	text-align:center;
+    background: url('../img/sbkg0.png');
+}
+.slot1{
+    width:26px;
+	height:46px;
+	text-align:center;
+    background: url('../img/sbkg1.png');
+}
+.slot2{
+    width:26px;
+	height:46px;
+	text-align:center;
+    background: url('../img/sbkg2.png');
+}
+#sb0
+{
+    position:relative;
+    top:9px;
+    left:28px;
+}
+#sb1
+{
+    position:relative;
+    top:9px;
+    left:42px;
+}
+#sb2{
+    position:relative;
+    top:9px;
+    left:52px;
+}
 #mainContent {
     position: relative;
     background-image:url('../img/telegraphBGsm.png');
@@ -45,6 +90,9 @@
     position: absolute;
     left: 200px;
     top: 0px;
+    width:188px;
+    height:67px;
+    background: url('../img/scoreBox.png') no-repeat;
 }
 #exchange {
     position: absolute;
