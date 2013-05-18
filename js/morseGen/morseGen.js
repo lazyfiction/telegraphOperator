@@ -101,8 +101,10 @@ define(function() {
     real[0] = 0;
     imag[0] = 0;
     for (var i = 1; i < WTsize; i++) {
-        real[i] = (WTsize - i) / WTsize * Math.random();
-        imag[i] = (WTsize - i) / WTsize * Math.random();
+        var fact = (i-WTsize)/(WTsize);
+        fact = fact / fact ;
+        real[i] =  fact*Math.random();
+        imag[i] = fact*Math.random();
     }
 
     noiseWT = audioCtx.createWaveTable(real, imag);
@@ -114,7 +116,7 @@ define(function() {
     // Connect MainVol to final destination
     mainVol.connect(audioCtx.destination);
     mainVol.gain.value = 0.3;
-    noiseGain.gain.value = 0.1;
+    noiseGain.gain.value = 0.9;
     compressor = audioCtx.createDynamicsCompressor();
 
     compressor.connect(mainVol);
@@ -124,7 +126,7 @@ define(function() {
     for (var i = 0; i < 4; i++) {
         noizeSource[i] = audioCtx.createOscillator();
         noizeSource[i].setWaveTable(noiseWT);
-        noizeSource[i].frequency.value = 0.2 + ((i + Math.random()) / 4);
+        noizeSource[i].frequency.value = 0.1 + (i / 4)*Math.random();
         noizeSource[i].connect(noiseGain);
         noizeSource[i].start(0);
     }

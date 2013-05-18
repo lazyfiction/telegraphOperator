@@ -95,9 +95,9 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
         }, (pauseDuration * 3));
     }
 
-    //morseGen.play({phrase:"Wild West Telegraph Operator Job", pulseTime: 0.125,variance: 0.005});
-    var init = function() {
+    var init = function(e) {
 
+        if ($('#' + e)) $('#' + e).html(_export.html);
         setInterval(function() {
             var seconds = new Date().getSeconds();
             var sdegree = seconds * 6;
@@ -241,6 +241,24 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
 
     }
     var _export = {
+        html: '\
+           <div id="exchange">\
+                <input type="checkbox" id="ex0" checked />\
+                <input type="checkbox" id="ex1" checked />\
+                <input type="checkbox" id="ex2" checked />\
+                <input type="checkbox" id="ex3" checked />\
+                <input type="checkbox" id="ex4" checked />\
+                <input type="checkbox" id="ex5" checked />\
+            </div>\
+            <textarea id="output"></textarea>\
+            <div id="clock">\
+                <div id="hour"></div>\
+                <div id="min"></div>\
+            </div>\
+            <img id="scoreBox" src="img/scoreBox.png" />\
+            <img id="lewiskeyImg" src="img/LewisKeysm.png" />\
+            <img id="morseSheet" src="img/morseSheet.png" />\
+        ',
         init: init
     };
 

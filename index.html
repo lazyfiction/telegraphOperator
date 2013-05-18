@@ -5,45 +5,25 @@
         <script data-main="js/main.js" src="js/require.js"></script>
         <link type="text/css" rel="stylesheet" href="style/main.css"
         />
+        
     </head>
     
     <body>
-        <div id="splashscreen">
-            <img src="img/wwtoj_splash.png" title="Wild West Telegraph Operator Job"
-            alt="Splash Image" />
-            <br/>
-            <label for="wpm">How quick are you partner? (Word Per Minute)</label>
-            <input id="wpm" value="5"
-            />
-            <label for="gamemode">How tough are you?</label>
-            <select id="gamemode">
-                <option value="easy">Sappy</option>
-                <option value="hard">Curly Wolf</option>
-            </select>
-            <br/>
-            <button>Play</button>
+        <div id="splashScreen">
+            <div id="gameSettings">
+                <label for="wpm">How quick are you partner? (Word Per Minute)</label>
+                <input id="wpm" value="5"
+                /><br/>
+                <label for="gamemode">How tough are you?</label>
+                <select id="gamemode">
+                    <option value="easy">Sappy</option>
+                    <option value="hard">Curly Wolf</option>
+                </select><br/>
+                <button id="playButton">Play</button>
+            </div>
         </div>
-
-        <label for="easymode">EasyMode</label>
-        <input id="easymode" />
-        <span class="preview"></span>
         <div id="mainContent">
-            <div id="exchange">
-                <input type="checkbox" id="ex0" checked />
-                <input type="checkbox" id="ex1" checked />
-                <input type="checkbox" id="ex2" checked />
-                <input type="checkbox" id="ex3" checked />
-                <input type="checkbox" id="ex4" checked />
-                <input type="checkbox" id="ex5" checked />
-            </div>
-            <textarea id="output"></textarea>
-            <div id="clock">
-                <div id="hour"></div>
-                <div id="min"></div>
-            </div>
-            <img id="scoreBox" src="img/scoreBox.png" />
-            <img id="lewiskeyImg" src="img/LewisKeysm.png" />
-            <img id="morseSheet" src="img/morseSheet.png" />
+ 
         </div>
     </body>
 

@@ -10,6 +10,20 @@
 .morseVal {
     border: #777 solid 2px;
 }
+#splashScreen {
+    position: relative;
+    background-image:url('../img/wwtoj_splash.png');
+    width: 640px;
+    height: 480px;
+}
+#gameSettings {
+    position: absolute;
+    top: 361px;
+    background: white;
+    left: 296px;
+    right: 12px;
+    padding: 5px;
+}
 #mainContent {
     position: relative;
     background-image:url('../img/telegraphBGsm.png');
