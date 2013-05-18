@@ -5,18 +5,18 @@ define(function() {
 
     function clearSlots(jqo){
         jqo.html("");
+        jqo.css("margin-top",0)
     }
     
     function addSlotsScore(jqo) {
-        for (var i = 0; i < 10; i++) {
-            //var ctr = Math.floor(Math.random() * scoreopts.length);
+        for (var i = 0; i < scoreopts.length; i++) {
             var cnt = Math.floor(Math.random() * 3);
             jqo.append("<div class='slot"+cnt+"'>" + scoreopts[i] + "</div>");
         }
     }
     
     function addSlotsSym(jqo) {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < scoreopts.length; i++) {
             var cnt = Math.floor(Math.random() * 3);
             jqo.append("<div class='slot"+cnt+"'>" + symbolopts[i] + "</div>");
         }
