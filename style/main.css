@@ -29,6 +29,42 @@
 }
 #scoreBox {
     position: absolute;
+    left: 200px;
+    top: 0px;
+}
+#exchange {
+    position: absolute;
+    left: -29px;
+    top: 80px;
+    width: 256px;
+    font-family: monospace;
+    display: table;
+    background: url('../img/exchange.png');
+    height: 196px;
+    -webkit-transform: scale(0.77);
+    transform: scale(0.8);
+}
+#ex0, #ex1, #ex2, #ex3, #ex4, #ex5 {
+    position: absolute;
+    right: 36px;
+}
+#ex0 {
+    top: 21px;
+}
+#ex1 {
+    top: 49px;
+}
+#ex2 {
+    top: 74px;
+}
+#ex3 {
+    top: 100px;
+}
+#ex4 {
+    top: 128px;
+}
+#ex5 {
+    top: 155px;
 }
 #min {
     position: absolute;
@@ -51,13 +87,13 @@
 #output {
     font-family: cursive;
     position: absolute;
-    top: 250px;
-    -webkit-transform: perspective(622px) translate(-132px, 45px) rotateZ(5deg) rotateX(29deg) scale(0.927);
-    left: 167px;
+    top: 143px;
+    -webkit-transform: perspective(516px) rotateZ(5deg) rotateX(29deg) translate(-100px, 156px) scale(0.8);
+    transform: perspective(516px) rotateZ(5deg) rotateX(29deg) translate(-100px, 156px) scale(0.8);
+    left: 198px;
     width: 35%;
     height: 32%;
 }
-
 #morseSheet {
     -webkit-transition: -webkit-transform 1s;
     transition: transform 1s;
