@@ -198,7 +198,7 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
             lewisKeyDown();
         });
 
-        $('#lewiskey').mouseup(function(event) {
+        $('#lewiskey,#mainContent').mouseup(function(event) {
 
             // Prevent any default action.
             event.preventDefault();
