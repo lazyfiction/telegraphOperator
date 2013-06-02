@@ -136,6 +136,8 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
         if ($('#' + e)) $('#' + e).html(_export.html);
         displayscore.init();
         setTime(new Date());
+        
+        
 
         $('#wpm').change(function(event) {
             //pulsetime = secondsinminute / (wordsperminute * wordlengthconstant * averagemorselength )
@@ -143,6 +145,9 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
             $('.ms').html(mainPulse);
             morseDecode.setDotDuration(mainPulse);
             mainVariance = mainPulse / pulseError;
+            dotDuration = morseDecode.getDotDuration();
+            dashDuration = morseDecode.getDashDuration();
+            pauseDuration = morseDecode.getPauseDuration();
         });
         
         $('#gamemode').change(function(event){
@@ -198,7 +203,7 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
             lewisKeyDown();
         });
 
-        $('#lewiskey,#mainContent').mouseup(function(event) {
+        $('#lewiskey').mouseup(function(event) {
 
             // Prevent any default action.
             event.preventDefault();
