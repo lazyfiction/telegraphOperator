@@ -1,4 +1,4 @@
-define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes', 'scoring/levenshtein','scoring/display','jquery.easing.min'], function($, morseDecode, morseGen, switchBoardCodes, levenshtein, displayscore, jqe) {
+define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchBoardCodes', 'scoring/levenshtein', 'scoring/display', 'jquery.easing.min'], function($, morseDecode, morseGen, switchBoardCodes, levenshtein, displayscore, jqe) {
 
     var pulseError = 90;
     var mainPulse = 0.250;
@@ -14,24 +14,22 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
     // Keep a timer for adding a new space to the message.
     var spaceTimer = null;
     var keydown = false;
-    
-    var showScore = function(){
+
+    var showScore = function() {
         //score = (outputstring.length -levenshtein_distance(outputstring,inputstring) )/inpustring.length * 100
         var outpt = $('#output').val().toUpperCase();
         var inpt = $('#input').val().toUpperCase();
         // strings same length to prevent false positives
-        if(outpt.length > inpt.length)
-        {
-            outpt = outpt.substring(0,inpt.length); 
+        if (outpt.length > inpt.length) {
+            outpt = outpt.substring(0, inpt.length);
         }
-        if(outpt.length < inpt.length )
-        {
-            while(outpt.length < inpt.length )
-                outpt += " ";
+        if (outpt.length < inpt.length) {
+            while (outpt.length < inpt.length)
+            outpt += " ";
         }
-        var score = ((outpt.length - levenshtein.levenshteinenator(outpt,inpt))/inpt.length)*100;
+        var score = ((outpt.length - levenshtein.levenshteinenator(outpt, inpt)) / inpt.length) * 100;
         score = Math.floor(score);
-        $('#score').html(score+'%');
+        $('#score').html(score + '%');
         displayscore.show(score);
     }
 
@@ -115,36 +113,45 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
         }, (pauseDuration * 3));
     }
 
+    var setTime = function(date) {
+        var mins = date.getMinutes();
+        var mdegree = mins * 6;
+        var mrotate = "rotate(" + mdegree + "deg)";
+
+        $("#min").css({
+            "transform": mrotate
+        });
+
+        var hours = date.getHours();
+        var hdegree = hours * 6;
+        var hrotate = "rotate(" + hdegree + "deg)";
+
+        $("#hour").css({
+            "transform": hrotate
+        });
+    }
+
     var init = function(e) {
 
         if ($('#' + e)) $('#' + e).html(_export.html);
-        setInterval(function() {
-            var seconds = new Date().getSeconds();
-            var sdegree = seconds * 6;
-            var srotate = "rotate(" + sdegree + "deg)";
-
-            $("#min").css({
-                "transform": srotate
-            });
-
-            var mins = new Date().getMinutes();
-            var mdegree = mins * 6;
-            var mrotate = "rotate(" + mdegree + "deg)";
-
-            $("#hour").css({
-                "transform": mrotate
-            });
-
-        }, 1000);
-
-
+        displayscore.init();
+        setTime(new Date());
 
         $('#wpm').change(function(event) {
             //pulsetime = secondsinminute / (wordsperminute * wordlengthconstant * averagemorselength )
             mainPulse = 60 / ($('#wpm').val() * 7 * 5);
             $('.ms').html(mainPulse);
-
+            morseDecode.setDotDuration(mainPulse);
             mainVariance = mainPulse / pulseError;
+        });
+        
+        $('#gamemode').change(function(event){
+            if($('#gamemode').val() == 'easy')
+            {
+                $('#easymode').show();
+            }else{
+                $('#easymode').hide();
+            }
         });
 
         $('#easymode').keydown(function(event) {
@@ -208,8 +215,17 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
             });
 
         });
-        
-        $('#sscore').click(function(){
+
+        $('#playButton').click(function() {
+            $('#splashScreen').hide();
+            $('#mainContent').show();
+            morseGen.play({
+                phrase: 'WWTOJ 1.0',
+                pulseTime: Number($('.ms').html())
+            });
+        });
+
+        $('#sscore').click(function() {
             showScore();
         });
 
@@ -279,7 +295,7 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
                 <div id="hour"></div>\
                 <div id="min"></div>\
             </div>\
-            <div id="scoreBox" src="img/scoreBox.png" >\
+            <div id="scoreBox" style="display:none;" src="img/scoreBox.png" >\
                 <div class="slots"  id="sb0">\
                     <div class="wrapper" ></div>\
                 </div>\
@@ -287,7 +303,7 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
                     <div class="wrapper" ></div>\
                 </div>\
                 <div class="slots"  id="sb2">\
-	                <div class="wrapper" ></div>\
+                <div class="wrapper" ></div>\
                 </div>\
             </div>\
             <img id="lewiskeyImg" src="img/LewisKeysm.png" />\

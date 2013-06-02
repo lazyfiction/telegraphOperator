@@ -149,6 +149,11 @@ define( function() {
         getPauseDuration : function() {
             return (_pauseDuration);
         },
+        setDotDuration : function(duration) {
+            _dotDuration = duration;
+            _dashDuration = (_dotDuration * 3);
+            _pauseDuration = (_dotDuration * 1); 
+        }
     }
     
     return _export;
