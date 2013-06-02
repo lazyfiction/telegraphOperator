@@ -3,26 +3,26 @@ define(function() {
     var scoreopts = ['0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9'];
     var symbolopts = ['/','$','@','&','+','=','-','"','%','0','/','$','@','&','+','=','-','"','%','0'];
 
-    function clearSlots(jqo){
+    var clearSlots = function(jqo){
         jqo.html("");
         jqo.css("margin-top",0)
     }
     
-    function addSlotsScore(jqo) {
+    var addSlotsScore = function(jqo) {
         for (var i = 0; i < scoreopts.length; i++) {
             var cnt = Math.floor(Math.random() * 3);
             jqo.append("<div class='slot"+cnt+"'>" + scoreopts[i] + "</div>");
         }
     }
     
-    function addSlotsSym(jqo) {
+    var addSlotsSym = function(jqo) {
         for (var i = 0; i < scoreopts.length; i++) {
             var cnt = Math.floor(Math.random() * 3);
             jqo.append("<div class='slot"+cnt+"'>" + symbolopts[i] + "</div>");
         }
     }
 
-    function moveSlots(jqo,val) {
+    var moveSlots = function(jqo,val) {
         var time = 6500;
         time += Math.round(Math.random() * 1000);
         jqo.stop(true, true);

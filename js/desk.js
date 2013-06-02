@@ -17,8 +17,8 @@ define(['jquery', 'morseGen/morseDecode', 'morseGen/morseGen', 'morseGen/switchB
     
     var showScore = function(){
         //score = (outputstring.length -levenshtein_distance(outputstring,inputstring) )/inpustring.length * 100
-        var outpt = $('#output').val();
-        var inpt = $('#input').val();
+        var outpt = $('#output').val().toUpperCase();
+        var inpt = $('#input').val().toUpperCase();
         // strings same length to prevent false positives
         if(outpt.length > inpt.length)
         {
